@@ -1,6 +1,5 @@
 # Akana API HOOK
-Put a nice company logo image here. 
-Link to product documentation and product overview page
+![Image of Akana] (https://www.akana.com/img/formerlyLOGO8.png)
 ## SmartyStreets API 
 ### About the API
 - Verify Addresses with SmartyStreet's USPS Address Verification API
