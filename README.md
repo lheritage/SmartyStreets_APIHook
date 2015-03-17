@@ -63,7 +63,7 @@
 
 #### Verify Connectivity
 
-To verify connectivity we create a sample integration API called SmartyStreets_HelloWorldIntegaration_vs0.   You will find it in the services folder.
+To verify connectivity we created and installed a sample integration API called SmartyStreets_HelloWorldIntegaration_vs0.   You will find it in the services folder.
 - This integration API uses the GET street-address of the SmartyStreets API to validate an address and then appends a success status to the result of the invocation of the SmartyStreets API.
 - When viewing the details page of the SmartyStreets_HelloWorldIntegration_vs0 you will notice in the PolicyAttachment we have two operational policies attached.  
     - The first one is for auditing.  
