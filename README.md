@@ -65,7 +65,41 @@ Try out the integration
 The results should look like this.   You can change the address you want to verify. 
 ```
 {"helloworld":"success",
- "helloWorld":[{"input_index":0,"candidate_index":0,"delivery_line_1":"12100 Wilshire Blvd","last_line":"Los Angeles CA 90025-7120","delivery_point_barcode":"900257120996","components":{"primary_number":"12100","street_name":"Wilshire","street_suffix":"Blvd","city_name":"Los Angeles","state_abbreviation":"CA","zipcode":"90025","plus4_code":"7120","delivery_point":"99","delivery_point_check_digit":"6"},"metadata":{"record_type":"H","zip_type":"Standard","county_fips":"06037","county_name":"Los Angeles","carrier_route":"C026","congressional_district":"33","building_default_indicator":"Y","rdi":"Commercial","elot_sequence":"0074","elot_sort":"A","latitude":34.04348,"longitude":-118.46757,"precision":"Zip9","time_zone":"Pacific","utc_offset":-8,"dst":true},"analysis":{"dpv_match_code":"D","dpv_footnotes":"AAN1","dpv_cmra":"N","dpv_vacant":"N","active":"Y","footnotes":"H#"}}]}
+ "helloWorld":[{"input_index":0,
+                "candidate_index":0,
+                "delivery_line_1":"12100 Wilshire Blvd",
+                "last_line":"Los Angeles CA 90025-7120",
+                "delivery_point_barcode":"900257120996",
+                "components":{"primary_number":"12100",
+                "street_name":"Wilshire",
+                "street_suffix":"Blvd",
+                "city_name":"Los Angeles",
+                "state_abbreviation":"CA",
+                "zipcode":"90025",
+                "plus4_code":"7120",
+                "delivery_point":"99",
+                "delivery_point_check_digit":"6"},
+                "metadata":{"record_type":"H",
+                            "zip_type":"Standard",
+                            "county_fips":"06037",
+                            "county_name":"Los Angeles",
+                            "carrier_route":"C026",
+                            "congressional_district":"33",
+                            "building_default_indicator":"Y",
+                            "rdi":"Commercial",
+                            "elot_sequence":"0074",
+                            "elot_sort":"A",
+                            "latitude":34.04348,
+                            "longitude":-118.46757,
+                            "precision":"Zip9",
+                            "time_zone":"Pacific",
+                            "utc_offset":-8,"dst":true},
+                            "analysis":{"dpv_match_code":"D",
+                                      "dpv_footnotes":"AAN1",
+                                      "dpv_cmra":"N",
+                                      "dpv_vacant":"N",
+                                      "active":"Y",
+                                      "footnotes":"H#"}}]}
  
 ```
 
