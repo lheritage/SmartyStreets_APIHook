@@ -55,8 +55,11 @@
 - From the Policy Workflow pane on the right select Activate Policy
 
 
-#### Offer an Anonymous Contract
--
+#### Activate Anonymous Contract
+- For this example there is already an anonymouse contract defined.
+- Expand the Contracts -> Provided Contracts folders
+- Select the SmartyStreet_Open v1.0 contract
+- From the Contract Workflow pain on the right. Click Activate.
 
 #### Verify Connectivity
 
