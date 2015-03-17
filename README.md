@@ -1,6 +1,12 @@
 # Akana API HOOK
-![Image of Akana] (https://www.akana.com/img/formerlyLOGO8.png)
+![Image of Akana] 
+(https://www.akana.com/img/formerlyLOGO8.png) 
+[Akana.com](http://akana.com)
+
 ## SmartyStreets API 
+![SmartyStreets API] 
+(https://smartystreets.com/includes/home-feb-2015/img/logo.png)
+
 ### About the API
 - Verify Addresses with SmartyStreet's USPS Address Verification API
 - Home Page: [SmartyStreet] (https://smartystreets.com)
