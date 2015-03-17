@@ -114,9 +114,14 @@ The results should look like this.   You can change the address you want to veri
  
 ```
 
+### Create Your Own Integration with SmartyStreets
+You are now able to create your own integrations with SmartyStreet API.   Use the SmartyStreets_HelloWorldIntegration_vs0 example integration api as your guide!
 
 ### Modify and Build
-In the event you need to change the API Hook.   Here are the instructions to do so. 
+- RAML Changes
+  - bla bla
+- Security Changes
+  - bla bla
 
 ### License
 Put a link to an open source license
