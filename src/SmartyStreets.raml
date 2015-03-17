@@ -1,0 +1,423 @@
+#%RAML 0.8
+title: SmartyStreets
+baseUri: https://api.smartystreets.com
+version: v1
+/street-address:
+  displayName: street-address
+  get:
+    description: |
+      validates a single street address
+    headers:
+      X-Standardize-Only:
+        description: |
+          Includes more than just verified results by standardizing
+          address where the primary numbers fit into the range on 
+          the street.
+        type: boolean
+      X-Include-Invalid:
+        description: |
+          Activates the most aggressive matching mode, which may 
+          include results for addresses that are not even remotely
+          valid. As a side-effect, ambiguous addresses return only one
+          candidate result, not multiple
+        type: boolean
+      X-Suppress-Logging:
+        description: |
+          When this header is present (even without a value), address
+          information in your request will not be persisted onour servers
+        type: boolean
+    queryParameters:
+      auth-id:
+        displayName: auth-id
+        type: string
+        required: true
+        description: security identifier
+        example: auth-id=cae776fa-c5a8-4305-84b0-814c696fef2f
+      auth-token:
+        displayName: auth-token
+        type: string
+        required: true
+        description: security token
+        example: auth-token=qTLRa7gwtkIDYpYrD2ED
+      input_id:
+        displayName: input_id
+        type: string
+        required: false
+        maxLength: 16
+        description: A unique identifier for this address used in your application; this field will be copied to the output
+      street:
+        displayName: street
+        type: string
+        required: true
+        maxLength: 64
+        description: The street line of the address, or an entire address
+      street2:
+        displayName: street2
+        type: string
+        required: false
+        maxLength: 64
+        description: Any extra address information
+      secondary:
+        displayName: secondary
+        type: string
+        required: false
+        maxLength: 32
+        description: Apartment, suite, or office number
+      city:
+        displayName: street
+        type: string
+        required: false
+        maxLength: 64
+        description: The city name
+      state:
+        displayName: street
+        type: string
+        required: false
+        maxLength: 32
+        description: The state name or abbreviation
+      zipcode:
+        displayName: street
+        type: string
+        required: false
+        maxLength: 16
+        description: The ZIP Code
+      addresse:
+        displayName: addresse
+        type: string
+        required: false
+        maxLength: 64
+        description: The name of the recipient, firm, or company at this address
+      urbanization:
+        displayName: urbanization
+        type: string
+        required: false
+        maxLength: 64
+        description: Only used with Puerto Rico
+      candidates:
+        displayName: candidates
+        type: integer
+        required: false
+        maximum: 10
+        description: The maximum number of valide addresses returned when the input is ambiguous
+    responses:
+      200:
+        description: |
+              Succesfully retrieved resource
+        body:
+          application/json:
+            
+            example: |
+              [
+                {
+                  "input_index": 0,
+                  "candidate_index": 0,
+                  "addressee": "Apple Inc",
+                  "delivery_line_1": "1 Infinite Loop",
+                  "delivery_line_2": "PO Box 42",
+                  "last_line": "Cupertino CA 95014-2083",
+                  "delivery_point_barcode": "950142083017",
+                  "components": {
+                    "primary_number": "1",
+                    "street_name": "Infinite",
+                    "street_suffix": "Loop",
+                    "city_name": "Cupertino",
+                    "state_abbreviation": "CA",
+                    "zipcode": "95014",
+                    "plus4_code": "2083",
+                    "delivery_point": "01",
+                    "delivery_point_check_digit": "7"
+                  },
+                  "metadata": {
+                    "record_type": "S",
+                    "county_fips": "06085",
+                    "county_name": "Santa Clara",
+                    "carrier_route": "C067",
+                    "congressional_district": "15",
+                    "rdi": "Commercial",
+                    "latitude": 37.33118,
+                    "longitude": -122.03062,
+                    "precision": "Zip9"
+                  },
+                  "analysis": {
+                    "dpv_match_code": "Y",
+                    "dpv_footnotes": "AABB",
+                    "dpv_cmra": "N",
+                    "dpv_vacant": "N",
+                    "active": "Y"
+                  }
+                }
+              ]
+  post:
+    description: | 
+      Perform multiple lookups in one request 
+    queryParameters:
+      auth-id:
+        displayName: auth-id
+        type: string
+        required: true
+        description: security identifier
+        example: auth-id=cae776fa-c5a8-4305-84b0-814c696fef2f
+      auth-token:
+        displayName: auth-token
+        type: string
+        required: true
+        description: security token
+        example: auth-token=qTLRa7gwtkIDYpYrD2ED
+    body:
+      application/json:
+        example: |
+          [
+            {
+              "street": "109 Wimbledon Square #E",
+              "street2": "#E",
+              "city": "Chesapeak",
+              "state": "Virginia"
+            },
+            {
+              "street": "PO Box 30757",
+              "city": "Salt Lake City",
+              "state": "UT",
+              "zipcode": "84130-0757",
+              "candidates": 10
+            }
+          ]    
+    responses:
+      201:
+        body:
+          application/json:
+            example: |
+              [
+                {
+                  "input_index": 0,
+                  "candidate_index": 0,
+                  "addressee": "Apple Inc",
+                  "delivery_line_1": "1 Infinite Loop",
+                  "delivery_line_2": "PO Box 42",
+                  "last_line": "Cupertino CA 95014-2083",
+                  "delivery_point_barcode": "950142083017",
+                  "components": {
+                    "primary_number": "1",
+                    "street_name": "Infinite",
+                    "street_suffix": "Loop",
+                    "city_name": "Cupertino",
+                    "state_abbreviation": "CA",
+                    "zipcode": "95014",
+                    "plus4_code": "2083",
+                    "delivery_point": "01",
+                    "delivery_point_check_digit": "7"
+                  },
+                  "metadata": {
+                    "record_type": "S",
+                    "county_fips": "06085",
+                    "county_name": "Santa Clara",
+                    "carrier_route": "C067",
+                    "congressional_district": "15",
+                    "rdi": "Commercial",
+                    "latitude": 37.33118,
+                    "longitude": -122.03062,
+                    "precision": "Zip9"
+                  },
+                  "analysis": {
+                    "dpv_match_code": "Y",
+                    "dpv_footnotes": "AABB",
+                    "dpv_cmra": "N",
+                    "dpv_vacant": "N",
+                    "active": "Y"
+                  }
+                }
+              ]
+/zipcode:
+  displayName: zipcode
+  get:
+    description: |
+      Look up and verify city, state and ZIP Code combinations
+    queryParameters:
+      auth-id:
+        displayName: auth-id
+        type: string
+        required: true
+        description: security identifier
+        example: auth-id=cae776fa-c5a8-4305-84b0-814c696fef2f
+      auth-token:
+        displayName: auth-token
+        type: string
+        required: true
+        description: security token
+        example: auth-token=qTLRa7gwtkIDYpYrD2ED
+      input_id:
+        displayName: input_id
+        type: string
+        required: false
+        maxLength: 16
+        description: A unique identifier for this address used in your application; this field will be copied to the output
+      city:
+        displayName: street
+        type: string
+        required: false
+        maxLength: 64
+        description: The city name
+      state:
+        displayName: street
+        type: string
+        required: false
+        maxLength: 32
+        description: The state name or abbreviation
+      zipcode:
+        displayName: street
+        type: string
+        required: false
+        maxLength: 16
+        description: The ZIP Code
+    responses:
+      200:
+        description: |
+              Succesfully retrieved resource
+        body:
+          application/json:
+            example: |
+              [
+                {
+                  "input_index": 0,
+                  "candidate_index": 0,
+                  "addressee": "Apple Inc",
+                  "delivery_line_1": "1 Infinite Loop",
+                  "delivery_line_2": "PO Box 42",
+                  "last_line": "Cupertino CA 95014-2083",
+                  "delivery_point_barcode": "950142083017",
+                  "components": {
+                    "primary_number": "1",
+                    "street_name": "Infinite",
+                    "street_suffix": "Loop",
+                    "city_name": "Cupertino",
+                    "state_abbreviation": "CA",
+                    "zipcode": "95014",
+                    "plus4_code": "2083",
+                    "delivery_point": "01",
+                    "delivery_point_check_digit": "7"
+                  },
+                  "metadata": {
+                    "record_type": "S",
+                    "county_fips": "06085",
+                    "county_name": "Santa Clara",
+                    "carrier_route": "C067",
+                    "congressional_district": "15",
+                    "rdi": "Commercial",
+                    "latitude": 37.33118,
+                    "longitude": -122.03062,
+                    "precision": "Zip9"
+                  },
+                  "analysis": {
+                    "dpv_match_code": "Y",
+                    "dpv_footnotes": "AABB",
+                    "dpv_cmra": "N",
+                    "dpv_vacant": "N",
+                    "active": "Y"
+                  }
+                }
+              ]
+  post:
+    description: | 
+      Perform multiple lookups in one request
+    queryParameters:
+      auth-id:
+        displayName: auth-id
+        type: string
+        required: true
+        description: security identifier
+        example: auth-id=cae776fa-c5a8-4305-84b0-814c696fef2f
+      auth-token:
+        displayName: auth-token
+        type: string
+        required: true
+        description: security token
+        example: auth-token=qTLRa7gwtkIDYpYrD2ED 
+    body:
+      application/json:
+        example: | 
+          [
+            {
+              "zipcode": "20500"
+            },
+            {
+              "city": "Cupertino",
+              "state": "CA"
+            },
+            {
+              "city": "Cupertino",
+              "state": "CA",
+              "zipcode": "95014"
+            },
+            {
+              "city": "Does not exist",
+              "state": "CA"
+            },
+            {
+              "input_id": "Apple",
+              "city": "Cupertino",
+              "state": "ca",
+              "zipcode": "90210"
+            }
+          ] 
+    responses:
+      201:
+        body:
+          application/json:
+            example: |
+              [
+                {
+                  "input_index": 0,
+                  "input_id": "zipcode-only",
+                  "city_states": [
+                    {
+                      "city": "Washington",
+                      "state_abbreviation": "DC",
+                      "state": "District of Columbia",
+                      "mailable_city": true
+                    }
+                  ],
+                  "zipcodes": [
+                    {
+                      "zipcode": "20500",
+                      "zipcode_type": "S",
+                      "county_fips": "11001",
+                      "county_name": "District of Columbia",
+                      "latitude": 38.89769,
+                      "longitude": -77.03869
+                    }
+                  ]
+                },
+                {
+                  "input_index": 1,
+                  "input_id": "city/state",
+                  "city_states": [
+                    {
+                      "city": "Cupertino",
+                      "state_abbreviation": "CA",
+                      "state": "California",
+                      "mailable_city": true
+                    }
+                  ],
+                  "zipcodes": [
+                    {
+                      "zipcode": "95014",
+                      "zipcode_type": "S",
+                      "county_fips": "06085",
+                      "county_name": "Santa Clara",
+                      "latitude": 37.32056,
+                      "longitude": -122.03866
+                    },
+                    {
+                      "zipcode": "95015",
+                      "zipcode_type": "P",
+                      "county_fips": "06085",
+                      "county_name": "Santa Clara",
+                      "latitude": 37.32292,
+                      "longitude": -122.05415
+                    }
+                  ]
+                }
+              ]
+
+                      
+                      
+
